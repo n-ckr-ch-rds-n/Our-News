@@ -34,3 +34,10 @@ router.post('/', (req, res, next) => {
     .then(() => res.json({ article: finalArticle.toJSON }))
     .catch(next);
 });
+
+router.get('/', (req, res, next) => {
+  return Articles.find()
+    .sort({ createdAt: 'descending' })
+    .then((articles) => res.json({ articles: articles.map(article => article.toJSON()) }))
+    .catch(next);
+})
