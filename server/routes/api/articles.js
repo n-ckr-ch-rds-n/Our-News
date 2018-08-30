@@ -78,3 +78,11 @@ router.patch('/:id', (req, res, next) {
     .then(() => res.json({ article: req.article.toJSON() }))
     .catch(next);
 });
+
+router.delete(':id', (req, res, next) => {
+  return Articles.findByIdAndRemove(req.article._id)
+    .then(() => res.sendStatus(200))
+    .catch(next);
+});
+
+module.exports = router;
