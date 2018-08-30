@@ -58,3 +58,23 @@ router.get('/:id', (req, res, next) => {
     article: req.article.toJSON(),
   });
 });
+
+router.patch('/:id', (req, res, next) {
+  const { body } = req;
+
+  if(typeof body.title !== 'undefined') {
+    req.article.title = body.title;
+  }
+
+  if(typeof body.author !== 'undefined') {
+    req.article.author = body.author;
+  }
+
+  if(typeof body.body !== 'undefined') {
+    req.article.body = body.body;
+  }
+
+  return req.article.save()
+    .then(() => res.json({ article: req.article.toJSON() }))
+    .catch(next);
+});
