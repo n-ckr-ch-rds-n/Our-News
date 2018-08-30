@@ -32,8 +32,8 @@ mongoose.connect('mongodb://localhost/ournews', { useNewUrlParser: true });
 mongoose.set('debug', true);
 
 //models
+require('./models/Articles');
 //routes
-// app.use(require('./routes'));
 
 app.use((req, res, next) => {
   const err = new Error('Not Found');
